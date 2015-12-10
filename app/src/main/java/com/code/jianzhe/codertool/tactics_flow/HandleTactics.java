@@ -5,9 +5,5 @@ package com.code.jianzhe.codertool.tactics_flow;
  * 处理流程策略
  */
 public class HandleTactics {
-<<<<<<< HEAD
 
-
-=======
->>>>>>> origin/master
 }
