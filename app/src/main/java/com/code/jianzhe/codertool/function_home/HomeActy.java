@@ -1,16 +1,18 @@
 package com.code.jianzhe.codertool.function_home;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.code.jianzhe.codertool.R;
 
 /**
  * 首页Activity
+ * 该页面提供检索功能
+ *
+ * @version 1.0
+ * @author JianZhe
  */
 public class HomeActy extends AppCompatActivity {
     /**
@@ -37,7 +39,12 @@ public class HomeActy extends AppCompatActivity {
      * 初始化事件
      */
     private void initEvent() {
-        EventsHandle eventHandle = new EventsHandle();
+        EventsHandle eventHandle = new EventsHandle(new EventsHandle.ContentCallBack() {
+            @Override
+            public String getContent() {
+                return inputBox.getText().toString();
+            }
+        });
         searchButton.setOnClickListener(eventHandle);
     }
 
