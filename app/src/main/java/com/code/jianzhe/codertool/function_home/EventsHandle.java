@@ -1,6 +1,8 @@
 package com.code.jianzhe.codertool.function_home;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.text.Spanned;
 import android.view.View;
 
 import com.code.jianzhe.codertool.R;
@@ -17,7 +19,7 @@ public class EventsHandle implements View.OnClickListener{
      * @see com.code.jianzhe.codertool.function_home.EventsHandle.ContentCallBack
      */
     private ContentCallBack callBack;
-
+//    private Activity activity;
     /**
      * HOME页事件集中处理器
      *
@@ -25,6 +27,7 @@ public class EventsHandle implements View.OnClickListener{
      */
     public EventsHandle(@NonNull ContentCallBack callBack) {
         this.callBack = callBack;
+//        this.activity = activity;
     }
 
     @Override
@@ -32,7 +35,8 @@ public class EventsHandle implements View.OnClickListener{
         switch (v.getId()){
             case R.id.search:
                 SearchFlowHandle searchFlowHandle = new SearchFlowHandle.Builder().create();
-                searchFlowHandle.handleSearch(callBack.getContent());
+                String result = searchFlowHandle.handleSearch(callBack.getContent());
+                callBack.putResult(result);
                 break;
         }
     }
@@ -46,5 +50,7 @@ public class EventsHandle implements View.OnClickListener{
      */
     public interface ContentCallBack {
         String getContent();
+
+        void putResult(String result);
     }
 }

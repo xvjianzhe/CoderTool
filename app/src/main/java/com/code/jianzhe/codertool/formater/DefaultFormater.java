@@ -1,5 +1,10 @@
 package com.code.jianzhe.codertool.formater;
 
+import android.text.Html;
+import android.text.Spanned;
+
+import com.code.jianzhe.codertool.search.DefaultSearch;
+
 /**
  * Created by JianZhe on 15/12/12.
  * <p>
@@ -17,6 +22,16 @@ public class DefaultFormater implements IFormater {
      */
     @Override
     public String formaterResult(String result) {
-        return null;
+
+        String[] temp = result.split(DefaultSearch.SP);
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0, len = temp.length; i < len; i++) {
+            if (i == 0) {
+                builder.append("<h3><font color='red'>" + temp[i] + "</font></h3>");
+            } else {
+                builder.append("<p>" + temp[i] + "</p>");
+            }
+        }
+        return builder.toString();
     }
 }

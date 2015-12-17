@@ -1,11 +1,15 @@
 package com.code.jianzhe.codertool.function_home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.text.Spanned;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 
 import com.code.jianzhe.codertool.R;
+import com.code.jianzhe.codertool.function_result.ResultActy;
 
 /**
  * 首页Activity
@@ -43,6 +47,16 @@ public class HomeActy extends AppCompatActivity {
             @Override
             public String getContent() {
                 return inputBox.getText().toString();
+            }
+
+            @Override
+            public void putResult(String result) {
+                Intent intent = new Intent(getApplicationContext(), ResultActy.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("content", inputBox.getText().toString());
+                bundle.putString("result", result);
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
             }
         });
         searchButton.setOnClickListener(eventHandle);

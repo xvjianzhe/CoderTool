@@ -2,6 +2,10 @@ package com.code.jianzhe.codertool.provider;
 
 import android.support.annotation.NonNull;
 
+import com.code.jianzhe.codertool.exception.CoderToolException;
+import com.code.jianzhe.codertool.exception.NoneException;
+import com.code.jianzhe.codertool.exception.NumberLimitException;
+
 /**
  * Created by JianZhe on 15/12/11.
  */
@@ -10,7 +14,7 @@ public interface IDataProvider<T> {
      * 返回检索的条件数据
      * @return 数据条件
      */
-    T getDataConditions();
+    T getDataConditions() throws CoderToolException;
 
     /**
      * 设置检索的内容

@@ -1,5 +1,7 @@
 package com.code.jianzhe.codertool.search;
 
+import com.code.jianzhe.codertool.exception.CoderToolException;
+import com.code.jianzhe.codertool.exception.NumberLimitException;
 import com.code.jianzhe.codertool.provider.IDataProvider;
 
 /**
@@ -12,5 +14,5 @@ public interface ISearch {
      * @param provider 检索数据条件提供器
      * @return 检索成功返回检索得到的结果集, 如果检索失败, 返回错误信息
      */
-    String search(IDataProvider provider);
+    String search(IDataProvider provider) throws CoderToolException;
 }

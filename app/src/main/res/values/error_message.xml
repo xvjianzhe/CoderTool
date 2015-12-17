@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- <Data><![CDATA[ <b>ABC</b> ]]> </Data>-->
+    <string name="NoneExceptionMessage"><Data><![CDATA[ 检索不到结果或暂不支持该内容的检索!<p>暂时仅支持如下内容:</p><ul><li>整数</li></ul> ]]></Data></string>
+    <string name="NumberLimitExceptionMessage">您输入的内容超过可计算的最大值!</string>
+</resources>

@@ -1,5 +1,7 @@
 package com.code.jianzhe.codertool.formater;
 
+import android.text.Spanned;
+
 /**
  * Created by JianZhe on 15/12/11.
  */

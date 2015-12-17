@@ -5,6 +5,8 @@ package com.code.jianzhe.codertool.analyse;
  * 分析器的行为定义
  */
 public interface IAnalyse {
+
+
     /**
      * 分析整数
      * 对输入内容进行判断,如果输入的是整数则返回结果为true,否则为false

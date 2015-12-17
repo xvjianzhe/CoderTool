@@ -1,8 +1,13 @@
 package com.code.jianzhe.codertool.flowhandle;
 
 import android.support.annotation.NonNull;
+import android.text.SpannableString;
+import android.text.Spanned;
 
 import com.code.jianzhe.codertool.analyse.IAnalyse;
+import com.code.jianzhe.codertool.exception.CoderToolException;
+import com.code.jianzhe.codertool.exception.NoneException;
+import com.code.jianzhe.codertool.exception.NumberLimitException;
 import com.code.jianzhe.codertool.factories.AnalyseFactory;
 import com.code.jianzhe.codertool.factories.FormaterFactory;
 import com.code.jianzhe.codertool.factories.SearchFactory;
@@ -94,9 +99,21 @@ public class SearchFlowHandle {
      */
     public final String handleSearch(String content) {
         //匹配模式
-        Mode mode = matchedProcessing(content);
-        IDataProvider provider = analyseHandle(mode);
-        return formarter(searchResult(provider));
+        String result = "";
+        try {
+            Mode mode = matchedProcessing(content);
+            IDataProvider provider = analyseHandle(mode);
+            result = formarter(searchResult(provider));
+        } catch (CoderToolException e) {
+            e.printStackTrace();
+            if (e instanceof NumberLimitException) {
+                result = e.getMessage();
+            } else if (e instanceof NoneException) {
+                result = e.getMessage();
+            }
+        }
+        return result;
+
     }
 
     /**
@@ -129,7 +146,7 @@ public class SearchFlowHandle {
      * @param provider 数据条件
      * @return 检索后的结果集
      */
-    private String searchResult(IDataProvider provider) {
+    private String searchResult(IDataProvider provider) throws CoderToolException {
         return builder.search.search(provider);
     }
 
