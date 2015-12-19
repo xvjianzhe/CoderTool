@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="binhexoct">进制转换</string>
+    <string name="api_search">API查询</string>
+    <string name="keyword_search">关键字查询</string>
+    <string name="calculate_expression">表达式计算</string>
+    <string name="syntax_search">语法解析</string>
+</resources>

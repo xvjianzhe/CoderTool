@@ -4,6 +4,10 @@ import android.text.Spanned;
 
 /**
  * Created by JianZhe on 15/12/17.
+ * 格式转换异常
+ *
+ * @version 1.0
+ * @author JianZhe
  */
 public class NumberLimitException extends CoderToolException {
 

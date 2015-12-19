@@ -2,6 +2,7 @@ package com.code.jianzhe.codertool.provider;
 
 import android.support.annotation.NonNull;
 
+import com.code.jianzhe.codertool.common.SearchContentType;
 import com.code.jianzhe.codertool.exception.CoderToolException;
 import com.code.jianzhe.codertool.exception.NoneException;
 import com.code.jianzhe.codertool.exception.NumberLimitException;
@@ -21,5 +22,5 @@ public interface IDataProvider<T> {
      *
      * @param content 检索的内容
      */
-    void setContent(@NonNull String content);
+    void setContentType(SearchContentType content);
 }

@@ -5,10 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.code.jianzhe.codertool.R;
+import com.code.jianzhe.codertool.common.SearchContentType;
+import com.code.jianzhe.codertool.common.SearchType;
+import com.code.jianzhe.codertool.common_acty.SearchBaseActy;
 import com.code.jianzhe.codertool.function_result.ResultActy;
 
 /**
@@ -18,7 +24,7 @@ import com.code.jianzhe.codertool.function_result.ResultActy;
  * @version 1.0
  * @author JianZhe
  */
-public class HomeActy extends AppCompatActivity {
+public class HomeActy extends SearchBaseActy {
     /**
      * 自动完成输入框
      * 用来输入用户需要检索的内容
@@ -28,8 +34,6 @@ public class HomeActy extends AppCompatActivity {
      * 检索按钮
      */
     private ImageButton searchButton;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +49,9 @@ public class HomeActy extends AppCompatActivity {
     private void initEvent() {
         EventsHandle eventHandle = new EventsHandle(new EventsHandle.ContentCallBack() {
             @Override
-            public String getContent() {
-                return inputBox.getText().toString();
+            public SearchType getContent() {
+                type.setContent(inputBox.getText().toString());
+                return type;
             }
 
             @Override
@@ -69,4 +74,10 @@ public class HomeActy extends AppCompatActivity {
         inputBox = (AutoCompleteTextView) findViewById(R.id.inputBox);
         searchButton = (ImageButton) findViewById(R.id.search);
     }
+
+    @Override
+    protected AutoCompleteTextView getInputBox() {
+        return inputBox;
+    }
+
 }

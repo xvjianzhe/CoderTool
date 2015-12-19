@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/binhexoct"
+        android:title="@string/binhexoct" />
+    <item
+        android:title="@string/api_search"
+        android:id="@+id/api_search" />
+    <item
+        android:title="@string/keyword_search"
+        android:id="@+id/keyword_search" />
+    <item
+        android:title="@string/calculate_expression"
+        android:id="@+id/calculate_expression" />
+    <item
+        android:title="@string/syntax_search"
+        android:id="@+id/syntax_search" />
+
+
+</menu>

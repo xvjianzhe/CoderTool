@@ -6,6 +6,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".HomeActy">
     <LinearLayout
+        android:id="@+id/input_area"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
@@ -30,4 +31,16 @@
             android:src="@mipmap/search_button"/>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/help"
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        android:layout_below="@id/input_area"
+        android:text="整数检索的格式:\n\t十进制:
+        直接输入内入如,150\n\t二进制:
+        起始输入阿拉伯数字2+空格+需要检索的内容\n\t八进制:
+        起始输入阿拉伯数字8+空格+需要检索的内容\n\t十六进制:
+        起始输入阿拉伯数字16+空格+需要检索的内容"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

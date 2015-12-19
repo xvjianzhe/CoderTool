@@ -1,14 +1,14 @@
 package com.code.jianzhe.codertool.flowhandle;
 
 import android.support.annotation.NonNull;
-import android.text.SpannableString;
-import android.text.Spanned;
 
+import com.code.jianzhe.codertool.analyse.AnalyseTool;
 import com.code.jianzhe.codertool.analyse.IAnalyse;
+import com.code.jianzhe.codertool.common.SearchContentType;
+import com.code.jianzhe.codertool.common.SearchType;
 import com.code.jianzhe.codertool.exception.CoderToolException;
 import com.code.jianzhe.codertool.exception.NoneException;
 import com.code.jianzhe.codertool.exception.NumberLimitException;
-import com.code.jianzhe.codertool.factories.AnalyseFactory;
 import com.code.jianzhe.codertool.factories.FormaterFactory;
 import com.code.jianzhe.codertool.factories.SearchFactory;
 import com.code.jianzhe.codertool.formater.IFormater;
@@ -31,58 +31,6 @@ import com.code.jianzhe.codertool.search.ISearch;
  * @version 1.0
  */
 public class SearchFlowHandle {
-    /**
-     * 匹配模式
-     * 用于作为分析器对输入内容分析的结果输出
-     */
-    enum Mode {
-        /**
-         * 关键字
-         */
-        KEYWORD,
-        /**
-         * 整数
-         */
-        NUMBER,
-        /**
-         * 表达式
-         */
-        EXPRESSION,
-        /**
-         * API
-         */
-        API,
-        /**
-         * 语法
-         */
-        SYNTAX,
-        /**
-         * 无匹配
-         */
-        NONE;
-        /**
-         * 分析完成后,保存的分析样本
-         */
-        private String content;
-
-        /**
-         * 设置分析样本
-         *
-         * @param content 分析样本
-         */
-        public void setContent(String content) {
-            this.content = content;
-        }
-
-        /**
-         * 获取分析样本
-         *
-         * @return 之前保存的分析样本
-         */
-        public String getContent() {
-            return this.content;
-        }
-    }
 
     /**
      * 检索流程处理的构建器
@@ -94,14 +42,14 @@ public class SearchFlowHandle {
     /**
      * 处理检索
      *
-     * @param content 检索的内容
+     * @param content 检索的类型及内容
      * @return 检索结果
      */
-    public final String handleSearch(String content) {
+    public final String handleSearch(SearchType content) {
         //匹配模式
         String result = "";
         try {
-            Mode mode = matchedProcessing(content);
+            SearchContentType mode = builder.analyse.analyse(content);
             IDataProvider provider = analyseHandle(mode);
             result = formarter(searchResult(provider));
         } catch (CoderToolException e) {
@@ -157,10 +105,13 @@ public class SearchFlowHandle {
      * @param mode 模式
      * @return 数据条件
      */
-    private IDataProvider analyseHandle(Mode mode) {
+    private IDataProvider analyseHandle(SearchContentType mode) {
         IDataProvider provider = null;
         switch (mode) {
-            case NUMBER:
+            case BINARY:
+            case OCTONARY:
+            case HEXADECIMAL:
+            case DECIMALISM:
                 provider = new NumberProvider();
                 break;
             case KEYWORD:
@@ -179,7 +130,7 @@ public class SearchFlowHandle {
                 provider = new NoneProvider();
                 break;
         }
-        provider.setContent(mode.content);
+        provider.setContentType(mode);
         return provider;
     }
 
@@ -190,22 +141,22 @@ public class SearchFlowHandle {
      * @param content 匹配内容
      * @return 匹配后的模式, 模式中包含检索内容
      */
-    private Mode matchedProcessing(String content) {
-        Mode mode = Mode.NONE;
-        if (builder.analyse.analyseNumber(content)) {
-            mode = Mode.NUMBER;
-        } else if (builder.analyse.analyseKeyword(content)) {
-            mode = Mode.KEYWORD;
-        } else if (builder.analyse.analyseAPI(content)) {
-            mode = Mode.API;
-        } else if (builder.analyse.analyseExpression(content)) {
-            mode = Mode.EXPRESSION;
-        } else if (builder.analyse.analyseSyntax(content)) {
-            mode = Mode.SYNTAX;
-        }
-        mode.content = content;
-        return mode;
-    }
+//    private Mode matchedProcessing(String content) {
+//        Mode mode = Mode.NONE;
+//        if (builder.analyse.analyseNumber(content)) {
+//            mode = Mode.NUMBER;
+//        } else if (builder.analyse.analyseKeyword(content)) {
+//            mode = Mode.KEYWORD;
+//        } else if (builder.analyse.analyseAPI(content)) {
+//            mode = Mode.API;
+//        } else if (builder.analyse.analyseExpression(content)) {
+//            mode = Mode.EXPRESSION;
+//        } else if (builder.analyse.analyseSyntax(content)) {
+//            mode = Mode.SYNTAX;
+//        }
+//        mode.content = content;
+//        return mode;
+//    }
 
     /**
      * 处理流程的构建器
@@ -219,7 +170,7 @@ public class SearchFlowHandle {
          *
          * @see IAnalyse
          */
-        private IAnalyse analyse;
+        private AnalyseTool analyse;
         /**
          * 格式化器
          *
@@ -241,21 +192,21 @@ public class SearchFlowHandle {
          * </p>
          */
         public Builder() {
-            analyse = AnalyseFactory.getInstance();
+            analyse = new AnalyseTool();
             formater = FormaterFactory.getInstance();
             search = SearchFactory.getInstance();
         }
 
-        /**
-         * 设置自定义构建器
-         *
-         * @param analyse {@link IAnalyse 构建器}
-         * @return {@link com.code.jianzhe.codertool.flowhandle.SearchFlowHandle.Builder 构建器}
-         */
-        public Builder setAnalyse(@NonNull IAnalyse analyse) {
-            this.analyse = analyse;
-            return this;
-        }
+//        /**
+//         * 设置自定义构建器
+//         *
+//         * @param analyse {@link IAnalyse 构建器}
+//         * @return {@link com.code.jianzhe.codertool.flowhandle.SearchFlowHandle.Builder 构建器}
+//         */
+//        public Builder setAnalyse(@NonNull IAnalyse analyse) {
+//            this.analyse = analyse;
+//            return this;
+//        }
 
         /**
          * 设置自定义{@link IFormater 格式化器}

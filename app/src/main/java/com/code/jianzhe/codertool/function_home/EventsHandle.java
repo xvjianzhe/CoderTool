@@ -6,6 +6,8 @@ import android.text.Spanned;
 import android.view.View;
 
 import com.code.jianzhe.codertool.R;
+import com.code.jianzhe.codertool.common.SearchContentType;
+import com.code.jianzhe.codertool.common.SearchType;
 import com.code.jianzhe.codertool.flowhandle.SearchFlowHandle;
 
 /**
@@ -49,7 +51,7 @@ public class EventsHandle implements View.OnClickListener{
      * @version 1.0
      */
     public interface ContentCallBack {
-        String getContent();
+        SearchType getContent();
 
         void putResult(String result);
     }

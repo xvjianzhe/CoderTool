@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <!-- 十进制转换结果-->
+    <string name="num_result_decimalism"><Data><![CDATA[ 十进制:%1$s-br-二进制:%2$s-br-八进制:%3$s-br-十六进制:%4$s ]]></Data></string>
+    <!-- 二进制转换结果-->
+    <string name="num_result_binary"><Data><![CDATA[ 二进制:%1$s-br-八进制:%2$s-br-十进制:%3$s-br-十六进制:%4$s ]]></Data></string>
+    <!-- 八进制转换结果-->
+    <string name="num_result_octonary"><Data><![CDATA[ 八进制:%1$s-br-二进制:%2$s-br-十进制:%3$s-br-十六进制:%4$s ]]></Data></string>
+    <!-- 十六进制转换结果-->
+    <string name="num_result_hexadecimal"><Data><![CDATA[ 十六进制:%1$s-br-二进制:%2$s-br-八进制:%3$s-br-十进制:%4$s ]]></Data></string>
+</resources>
